@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -42,18 +43,54 @@ class CPSystem {
     }
 
     // search by make of car
-    CarPart[] searchByMake(CarMake make) {
+    ArrayList<CarPart> searchByMake(CarMake make) {
+        // create list of car parts
+        ArrayList foundParts = new ArrayList<CarPart>();
 
+        // search each car part in inventory
+        for (CarPart part : carPartsInventory.values()) {
+            // check for make
+            if (part.make == make) {
+                foundParts.add(part);
+            }
+        }
+
+        // return list
+        return foundParts;
     }
 
     // search by model of car
-    CarPart[] searchByModel(String model) {
+    ArrayList<CarPart> searchByModel(String model) {
+        // create list of car parts
+        ArrayList foundParts = new ArrayList<CarPart>();
 
+        // search each car part in inventory
+        for (CarPart part : carPartsInventory.values()) {
+            // check for model
+            if (part.model == model) {
+                foundParts.add(part);
+            }
+        }
+
+        // return list
+        return foundParts;
     }
 
     // search by year of car
-    CarPart[] searchByYear(int year) {
+    ArrayList<CarPart> searchByYear(int year) {
+        // create list of car parts
+        ArrayList foundParts = new ArrayList<CarPart>();
 
+        // search each car part in inventory
+        for (CarPart part : carPartsInventory.values()) {
+            // check for make
+            if (part.year == year) {
+                foundParts.add(part);
+            }
+        }
+
+        // return list
+        return foundParts;
     }
 
     // search by id of car
