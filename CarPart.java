@@ -1,9 +1,15 @@
 class CarPart {
-    // The fields include Part ID, Make, Model, and Year.
-    Int partID;
+    int partID;
     CarMake make;
     String model;
-    Int year;
+    int year;
+
+    public CarPart(int partID, CarMake make, String model, int year) {
+        this.partID = partID;
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
 }
 
 enum CarMake {
