@@ -13,7 +13,7 @@ class CPSystem {
     int add(CarMake make, String model, int year) {
         // check year format
         if (year < 0) {
-            throw InvalidYear("Invalid year given");
+            throw new CPExceptions.InvalidYear("Invalid year given");
         }
 
         // get new partID
@@ -36,7 +36,7 @@ class CPSystem {
         // check if car part exists in inventory
         if (!carPartsInventory.containsKey(partID)) {
             // part does not exists
-            throw PartIdNotFound("Part does not exist in database");
+            throw new CPExceptions.PartIdNotFound("Part does not exist in database");
         }
 
         // get car part
@@ -120,14 +120,17 @@ class CPSystem {
     }
 }
 
-public class PartIdNotFound extends Exception {
+public class CPExceptions extends Exception {
     private static final long serialVersionUID = 1L;
+
+    public CPExceptions() {}
 
     // Part ID not found in inventory
     public PartIdNotFound(String message) {
         super(message);
     }
 
+    // invalid year
     public InvalidYear(String message) {
         super(message);
     }
