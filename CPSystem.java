@@ -7,11 +7,15 @@ class CPSystem {
     int latestCarPartID = 0;
 
     // inventory of parts
-    HashMap carPartsInventory = new HashMap<String, CarPart>();
+    HashMap<String, CarPart> carPartsInventory = new HashMap<String, CarPart>();
     
-
     // add new car part
     int add(CarMake make, String model, int year) {
+        // check year format
+        if (year < 0) {
+            throw InvalidYear("Invalid year given");
+        }
+
         // get new partID
         int newPartID = ++latestCarPartID;
 
@@ -21,6 +25,9 @@ class CPSystem {
         // add to inventory
         carPartsInventory.put(newPartID, part);
 
+        // increment latest carPart ID by 1
+        this.latestCarPartID++;
+
         return newPartID;
     } 
 
@@ -29,7 +36,7 @@ class CPSystem {
         // check if car part exists in inventory
         if (!carPartsInventory.containsKey(partID)) {
             // part does not exists
-            throw PartIdNotFound();
+            throw PartIdNotFound("Part does not exist in database");
         }
 
         // get car part
@@ -107,6 +114,10 @@ class CPSystem {
         // return found car part
         return foundPart;
     }
+
+    int getLatestCarPartID() {
+        return this.latestCarPartID;
+    }
 }
 
 public class PartIdNotFound extends Exception {
@@ -114,6 +125,10 @@ public class PartIdNotFound extends Exception {
 
     // Part ID not found in inventory
     public PartIdNotFound(String message) {
+        super(message);
+    }
+
+    public InvalidYear(String message) {
         super(message);
     }
 }
